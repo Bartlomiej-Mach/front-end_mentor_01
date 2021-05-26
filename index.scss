@@ -1,0 +1,154 @@
+@mixin center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin center-column() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+@mixin center-space-between() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+$mobile-width: 800px;
+$mobile-width-2: 560px;
+
+
+@mixin mobile {
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+}
+@mixin mobile2 {
+    @media (max-width: #{$mobile-width-2}) {
+        @content;
+    }
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    background: hsl(233, 47%, 7%);
+    font-size: 15px;
+    @include center-column();
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.main-container {
+    margin-top: 200px;
+    max-width: 1440px;
+    width: 70%;
+    background: hsl(244, 38%, 16%);
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    @include mobile() {
+        @include center-column();
+    }
+    &__left-side {
+        padding: 80px;
+        width: 50%;
+        @include center-column();
+        @include mobile() {
+            width: 100%;
+            margin-top: 300px;
+        }
+        @include mobile2() {
+            padding: 20px;
+            text-align: center;
+        }
+        .welcome-text {
+            color: hsl(0, 0%, 100%);
+            font-family: 'Inter', sans-serif;
+            .purple-color {
+                color: hsl(277, 64%, 61%);
+            }
+        }
+        .card-description {
+            margin-top: 30px;
+            color: hsla(0, 0%, 100%, 0.75);
+            font-family: 'Lexend Deca', sans-serif;
+            font-weight: lighter;
+        }
+        .stat-container {
+            width: 100%;
+            color: hsl(0, 0%, 100%);
+            margin-top: 60px;
+            @include center-space-between();
+            @include mobile2() {
+                @include center-column();
+                margin-top: 20px;
+            }
+            .stat-number {
+                font-family: 'Inter', sans-serif;
+                @include mobile2() {
+                    margin-top: 15px;
+                }
+            }
+            .stat-name {
+                margin-top: 5px;
+                display: block;
+                font-family: 'Lexend Deca', sans-serif;
+                color: hsla(0, 0%, 100%, 0.6);
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 10px;
+                
+            }
+        }
+    }
+    &__right-side {
+        width: 50%;
+        position: relative;
+        background-image: url(./images/image-header-desktop.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        @include mobile() {
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            top: 0;
+        }
+        &::after {
+            width: 100%;
+            height: 100%;
+            background: hsl(277, 92%, 30%);
+            opacity: 0.4;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        
+    }
+    
+}
+.footer-section { 
+    margin-top: 100px;
+    font-size: 11px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+.footer-section a {
+     color: hsl(228, 45%, 44%);
+}
